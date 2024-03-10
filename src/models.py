@@ -40,14 +40,15 @@ class Followers(Base):
     id = Column(Integer, primary_key=True)
     user_follower_id = Column(Integer, ForeignKey('users.id'))
     user_following_id = Column(Integer, ForeignKey('users.id'))
-    follower = relationship(Users)
+    user_follower =  relationship("Users", foreign_keys=["user_follower_id"])
+    user_following = relationship("Users", foreign_keys=["user_following_id "])
 
 
 class Like(Base):
     __tablename__='Like'
     id = Column (Integer, primary_key=True)
-    post_from_id = Column(Integer, ForeignKey('Post.id'))
-    post_to_id = Column(Integer, ForeignKey('Post.id'))
+    post_from_id = Column(Integer, ForeignKey('post.id'))
+    post_to_id = Column(Integer, ForeignKey('post.id'))
     posts = relationship(Post)
 
 
